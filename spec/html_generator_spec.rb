@@ -21,7 +21,7 @@ describe HTMLGenerator do
 
   describe "#unordered_list" do
     it "returns a string of html that contains the list" do
-      skip
+
       list_html = strip_whitespace(
         html_generator.unordered_list(["item1", "item2", "item3"])
       )
@@ -32,20 +32,20 @@ describe HTMLGenerator do
 
   describe "#button" do
     it "returns a string of html that has a button with text" do
-      skip
-      button_html = strip_whitespace(
+
+      button_html =
         html_generator.button("button-text")
-      )
+
 
       expect(button_html).to eq("<button>button-text</button>")
     end
 
     context "with a class attribute given" do
       it "returns the button with a class attribute" do
-        skip
-        button_html = strip_whitespace(
+
+        button_html =
           html_generator.button("flashy-button", :class => "flashy_class")
-        )
+
 
         expect(button_html).to eq("<button class='flashy_class'>flashy-button</button>")
       end
@@ -54,20 +54,20 @@ describe HTMLGenerator do
 
   context "with a layout" do
     it "returns wraps all html in the layout by replacing yield" do
-      skip
-      html_generator = HTMLGenerator.new("<main><%= yield %></main>")
+
+      html_generator = HTMLGenerator.new("<main><%= jimjam %></main>")
       html = strip_whitespace(
         html_generator.section("section_text")
       )
       expect(html).to eq("<main><section>section_text</section></main>")
 
-      html_generator = HTMLGenerator.new("<div><%= yield %></div>")
+      html_generator = HTMLGenerator.new("<div><%= jimjam %></div>")
       html = strip_whitespace(
         html_generator.unordered_list(["an-item"])
       )
       expect(html).to eq("<div><ul><li>an-item</li></ul></div>")
 
-      html_generator = HTMLGenerator.new("<section><%= yield %></section>")
+      html_generator = HTMLGenerator.new("<section><%= jimjam %></section>")
       html = strip_whitespace(
         html_generator.button("button-in-a-section")
       )
